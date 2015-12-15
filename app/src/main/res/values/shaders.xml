@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="vertex_shader">
+        attribute vec3 vPosition;
+        attribute vec2 vTexture;
+        uniform mat4 vTransform;
+        uniform mat4 vProjection;
+        uniform mat4 vCamera;
+        varying vec2 varyingTexCoord;
+
+        void main()
+        {
+            gl_Position = vProjection * vCamera * vTransform * vec4(vPosition, 1.0);
+            varyingTexCoord = vTexture;
+        }
+    </string>
+    <string name="fragment_shader">
+        precision mediump float;
+        uniform vec4 vColor;
+        uniform sampler2D diffuse;
+        varying vec2 varyingTexCoord;
+
+        void main()
+        {
+            vec4 color = texture2D(diffuse, varyingTexCoord);
+            color.r *= vColor.r;
+            color.g *= vColor.g;
+            color.b *= vColor.b;
+            color.a *= vColor.a;
+            gl_FragColor = color;
+        }
+    </string>
+
+</resources>

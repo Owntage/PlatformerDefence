@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
 import android.util.Log;
+import android.view.Window;
 
 import com.vk.sdk.VKAccessToken;
 import com.vk.sdk.VKCallback;
@@ -32,7 +33,9 @@ public class EndOfLevel extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_end_of_level);
+
 
 
         col=getIntent().getIntExtra("result",0);
@@ -61,7 +64,7 @@ public class EndOfLevel extends Activity {
         public void onClick(DialogInterface dialog, int which) {
             //вход в вк и публикация
             WriteNode();
-            finish();
+            //finish();
         }
     }
 
@@ -95,6 +98,7 @@ public class EndOfLevel extends Activity {
 
     protected void onLoginFailed(VKError error) {
         Log.w(TAG, "onLoggedFailed: " + error);
+        finish();
     }
 
     @Override
@@ -122,11 +126,12 @@ public class EndOfLevel extends Activity {
             @Override
             public void onComplete(VKResponse response) {
                 Log.i(TAG, "onComplete request");
+                finish();
             }
 
             @Override
             public void onError(VKError error) {
-                Log.w(TAG, "onError: " + error);
+                onLoginFailed(error);
             }
         });
     }

@@ -13,6 +13,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -33,7 +34,7 @@ public class MenuActivity extends Activity {
 
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.menu_layout);
 
         textView = (TextView) findViewById(R.id.txt);

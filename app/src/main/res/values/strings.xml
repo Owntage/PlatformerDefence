@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">ES2</string>
+    <string name="title_activity_end_of_level">EndOfLevel</string>
+    <integer name="com_vk_sdk_AppId">5188470</integer>
+    <string name="for_wall_before">Я набрал в игре </string>
+    <string name="for_wall_after">. А ты сколько сможешь??</string>
+    <string name="level1">level1</string>
+    <string name="level2">level2</string>
+
+</resources>

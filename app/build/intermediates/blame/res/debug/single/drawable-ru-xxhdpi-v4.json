@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "C:\\android\\platformerdefence2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ru-xxhdpi-v4\\ic_ab_app.png",
+        "source": "C:\\android\\platformerdefence2\\app\\build\\intermediates\\exploded-aar\\platformerdefence2\\vksdk_library\\unspecified\\res\\drawable-ru-xxhdpi-v4\\ic_ab_app.png"
+    },
+    {
+        "merged": "C:\\android\\ES2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ru-xxhdpi-v4\\ic_ab_app.png",
+        "source": "C:\\android\\ES2\\app\\build\\intermediates\\exploded-aar\\ES2\\vksdk_library\\unspecified\\res\\drawable-ru-xxhdpi-v4\\ic_ab_app.png"
+    }
+]

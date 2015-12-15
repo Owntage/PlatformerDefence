@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "C:\\android\\platformerdefence2\\app\\build\\intermediates\\res\\merged\\debug\\layout-v17\\vk_share_dialog.xml",
+        "source": "C:\\android\\platformerdefence2\\app\\build\\intermediates\\exploded-aar\\platformerdefence2\\vksdk_library\\unspecified\\res\\layout-v17\\vk_share_dialog.xml"
+    },
+    {
+        "merged": "C:\\android\\ES2\\app\\build\\intermediates\\res\\merged\\debug\\layout-v17\\vk_share_dialog.xml",
+        "source": "C:\\android\\ES2\\app\\build\\intermediates\\exploded-aar\\ES2\\vksdk_library\\unspecified\\res\\layout-v17\\vk_share_dialog.xml"
+    }
+]

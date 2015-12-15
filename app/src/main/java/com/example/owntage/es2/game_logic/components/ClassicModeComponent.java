@@ -63,6 +63,9 @@ public class ClassicModeComponent implements IComponent {
             case "coin_picked":
                 score++;
                 break;
+            case "finish":
+                finished = true;
+                break;
             case "checkpoint":
                 lastCheckpoint = event.actorID;
                 break;
@@ -117,7 +120,12 @@ public class ClassicModeComponent implements IComponent {
 
     @Override
     public ComponentUpdate getUpdate(int systemID) {
-        return new GameModeUpdate(score, "classic_mode", finished);
+        GameModeUpdate newUpdate = new GameModeUpdate(score, "classic_mode", finished);
+        if(lifes == 0) {
+            newUpdate.score = 0;
+        }
+        systems.put(systemID, newUpdate);
+        return newUpdate;
     }
 
     @Override

@@ -18,6 +18,10 @@
 				<type>sentry</type>
 				<damage>3</damage>
 			</raycast_damage>
+			<collision_damage>
+				<type>water</type>
+				<damage>100</damage>
+			</collision_damage>
 		</health>
 		<weapon>
 			<radius>10.0f</radius>
@@ -70,17 +74,27 @@
 	<actor id = "coin">
 		<physics>
 			<body_name>coin</body_name>
-			<body_type>static</body_type>
+			<body_type>sensor</body_type>
 			<x>10.0</x>
 			<y>10.0</y>
 			<scale_x>1.0</scale_x>
 			<scale_y>1.0</scale_y>
-			<mass>10000000000.0</mass>
-			<restitution>0.7</restitution>
 		</physics>
 		<coin>.</coin>
 		<texture>
-			<name>box1</name>
+			<animation>
+				<delay>0.1</delay>
+				<name>default</name>
+				<image>coin1</image>
+				<image>coin2</image>
+				<image>coin3</image>
+				<image>coin4</image>
+				<image>coin5</image>
+				<image>coin6</image>
+				<image>coin7</image>
+				<image>coin8</image>
+				<image>coin9</image>
+			</animation>
 		</texture>
 	</actor>
 	<actor id = "sentry1">
@@ -138,5 +152,18 @@
 	</actor>
 	<actor id = "classic_mode">
 		<classic_mode>.</classic_mode>
+	</actor>
+	<actor id = "water">
+		<physics>
+			<body_type>sensor</body_type>
+			<body_name>water</body_name>
+		</physics>
+	</actor>
+	<actor id = "finish">
+		<physics>
+			<body_name>finish</body_name>
+			<body_type>sensor</body_type>
+		</physics>
+		<signal>finish</signal>
 	</actor>
 </properties>

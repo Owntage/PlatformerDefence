@@ -21,11 +21,26 @@ public class PlayerController {
     GameLogic gameLogic;
     int actorID;
     MoveEvent event;
+    boolean isJumping = false;
 
+    public void jump() {
+        Event event = new Event();
+        event.global = false;
+         event.component = "jump";
+        event.actorID = actorID;
+        gameLogic.onEvent(event);
+    }
+
+    public boolean getIsJumping() {
+        return isJumping;
+    }
 
     public PlayerController(Shader shader, Texture texture, ButtonManager buttonManager, GameLogic gameLogic, String id, float spawnX, float spawnY) {
         float buttonsX = -4.0f;
         float buttonsY = -2.0f;
+
+        this.gameLogic = gameLogic;
+
         actorID = gameLogic.createActor(id);
 
         PositionSetEvent position = new PositionSetEvent(spawnX, spawnY, "position_set");
@@ -88,21 +103,25 @@ public class PlayerController {
 
             GameLogic gameLogic;
             int actorID;
-            public JumpCallback(GameLogic gameLogic, int actorID) {
+            boolean jumpState;
+            public JumpCallback(GameLogic gameLogic, int actorID, boolean jumpState) {
                 this.gameLogic = gameLogic;
                 this.actorID = actorID;
+                this.jumpState = jumpState;
             }
             public void callback() {
-                Event event = new Event();
-                event.global = false;
-                event.component = "jump";
-                event.actorID = actorID;
-                gameLogic.onEvent(event);
+                //Event event = new Event();
+                //event.global = false;
+               // event.component = "jump";
+                //event.actorID = actorID;
+                //gameLogic.onEvent(event);
+                isJumping = jumpState;
             }
         }
 
         GameButton jumpButton = new GameButton(shader, texture, MainRenderer.screenWidth / 128.0f - 2.0f, 1.5f - MainRenderer.screenHeight / 128.0f, 3.0f, 2.0f);
-        jumpButton.setDownCallback(new JumpCallback(gameLogic, actorID));
+        jumpButton.setDownCallback(new JumpCallback(gameLogic, actorID, true));
+        jumpButton.setUpCallback(new JumpCallback(gameLogic, actorID, false));
         buttonManager.createButton(10, jumpButton);
     }
 

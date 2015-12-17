@@ -59,9 +59,13 @@ public class PhysicsComponent implements IComponent {
                 }
                 if(moveEvent.left) {
                     acceleration.add(new Vector(-movingForce, 0.0f));
+                } else {
+                    body.getVelocity().setX(0.0f);
                 }
                 if(moveEvent.right) {
                     acceleration.add(new Vector(movingForce, 0.0f));
+                } else {
+                    body.getVelocity().setX(0.0f);
                 }
                 currentAcceleration = acceleration;
                 break;
@@ -75,6 +79,8 @@ public class PhysicsComponent implements IComponent {
                 } else {
                     world.setBodyAcceleration(body, new Vector());
                 }
+
+
 
                 //generating local event
                 if(body.isCollided()) {

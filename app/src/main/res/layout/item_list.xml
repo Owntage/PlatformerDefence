@@ -10,7 +10,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:background="@drawable/button0"
-        android:textColor="#ffffff" />
+        android:textColor="#ffffff"
+        android:text="level1z"
+        android:textSize="@dimen/abc_action_bar_progress_bar_size"
+        android:textStyle="bold"
+        android:nestedScrollingEnabled="false"
+        android:background="@drawable/button0" />
 
 </LinearLayout>

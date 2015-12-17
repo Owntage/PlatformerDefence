@@ -110,6 +110,9 @@ public class MainRenderer implements GLSurfaceView.Renderer {
             Texture texture = new Texture(mainActivity.getResources(), "button");
             playerController = new PlayerController(shader, texture, buttonManager, gameLogic, "main_actor", levelLoader.getSpawnX(), levelLoader.getSpawnY());
             ClassicModeEvent classicModeEvent = new ClassicModeEvent(playerController.getActorID(), levelLoader.getGameModeID());
+            if(gameLogic == null) {
+                Log.e("game logic", "game logic is null");
+            }
             gameLogic.onEvent(classicModeEvent);
             renderSystem = new RenderSystem(shader, texture, gameLogic, playerController.getActorID());
         }

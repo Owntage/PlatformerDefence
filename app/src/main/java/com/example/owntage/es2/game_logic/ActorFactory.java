@@ -9,6 +9,7 @@ import com.example.owntage.es2.game_logic.components.BillboardComponent;
 import com.example.owntage.es2.game_logic.components.CheckpointComponent;
 import com.example.owntage.es2.game_logic.components.ClassicModeComponent;
 import com.example.owntage.es2.game_logic.components.CoinComponent;
+import com.example.owntage.es2.game_logic.components.MonsterMoveComponent;
 import com.example.owntage.es2.game_logic.components.SignalComponent;
 import com.example.owntage.es2.game_logic.components.HealthComponent;
 import com.example.owntage.es2.game_logic.components.MoveComponent;
@@ -96,6 +97,9 @@ public class ActorFactory {
                 break;
             case "signal":
                 component = new SignalComponent();
+                break;
+            case "monster":
+                component = new MonsterMoveComponent();
                 break;
             default:
                 return null;

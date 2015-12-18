@@ -16,6 +16,7 @@ public class MainActivity extends Activity {
 
     public static String PACKAGE_NAME;
     public static Context CONTEXT;
+    private int levelNumber;
     MainSurfaceView mainSurfaceView;
 
     @Override
@@ -29,7 +30,7 @@ public class MainActivity extends Activity {
         boolean supportES2 = (info.reqGlEsVersion >= 0x20000);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         if(supportES2) {
-            int levelNumber = getIntent().getIntExtra("level_number",0);
+            levelNumber = getIntent().getIntExtra("level_number",0);
             MainRenderer mainRenderer = new MainRenderer(getString(R.string.vertex_shader), getString(R.string.fragment_shader), this, levelNumber);
             mainSurfaceView = new MainSurfaceView(this, mainRenderer);
             mainSurfaceView.setEGLContextClientVersion(2);
@@ -70,9 +71,11 @@ public class MainActivity extends Activity {
 
     public void onGameFinished(int score) {
         Log.e("game is finished", "score: " + score);
-        finish();
         Intent intent=new Intent(MainActivity.this,EndOfLevel.class);
-        intent.putExtra("result",score);
+        intent.putExtra("result", score);
+        intent.putExtra("level",levelNumber);
+        intent.putExtra("minimum",1);
+        finish();
         startActivity(intent);
     }
 }

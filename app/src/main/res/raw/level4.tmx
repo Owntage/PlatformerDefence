@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-up" width="100" height="40" tilewidth="32" tileheight="32" nextobjectid="95">
+<map version="1.0" orientation="orthogonal" renderorder="right-up" width="100" height="40" tilewidth="32" tileheight="32" nextobjectid="96">
  <tileset firstgid="1" name="tileset" tilewidth="32" tileheight="32">
   <image source="generic_platformer_tiles.png" width="1024" height="768"/>
  </tileset>
@@ -1632,7 +1632,7 @@
    <tile gid="298"/>
    <tile gid="298"/>
    <tile gid="298"/>
-   <tile gid="298"/>
+   <tile gid="74"/>
    <tile gid="298"/>
    <tile gid="298"/>
    <tile gid="298"/>
@@ -2030,7 +2030,7 @@
    <tile gid="298"/>
    <tile gid="298"/>
    <tile gid="298"/>
-   <tile gid="74"/>
+   <tile gid="169"/>
    <tile gid="460"/>
    <tile gid="462"/>
    <tile gid="298"/>
@@ -2038,7 +2038,7 @@
    <tile gid="298"/>
    <tile gid="460"/>
    <tile gid="462"/>
-   <tile gid="298"/>
+   <tile gid="169"/>
    <tile gid="298"/>
    <tile gid="298"/>
    <tile gid="194"/>
@@ -2130,7 +2130,7 @@
    <tile gid="298"/>
    <tile gid="298"/>
    <tile gid="298"/>
-   <tile gid="194"/>
+   <tile gid="265"/>
    <tile gid="460"/>
    <tile gid="462"/>
    <tile gid="298"/>
@@ -2538,7 +2538,7 @@
    <tile gid="298"/>
    <tile gid="460"/>
    <tile gid="462"/>
-   <tile gid="163"/>
+   <tile gid="169"/>
    <tile gid="298"/>
    <tile gid="298"/>
    <tile gid="298"/>
@@ -4032,7 +4032,7 @@
   <object id="24" x="1054.67" y="577.333" width="30.6667" height="30.6667"/>
   <object id="25" type="spawn" x="294.667" y="702.667" width="34.6667" height="37.3333"/>
   <object id="27" type="classic_mode" x="312" y="330.667" width="144" height="88"/>
-  <object id="28" type="finish" x="806.667" y="640" width="18.6667" height="25.3333"/>
+  <object id="28" type="finish" x="862.667" y="518" width="18.6667" height="25.3333"/>
   <object id="29" name="scalable" type="checkpoint" x="909.333" y="777.333" width="14.6667" height="52"/>
   <object id="30" name="scalable" type="checkpoint" x="1154.67" y="712" width="20" height="52"/>
   <object id="31" name="scalable" type="checkpoint" x="1004" y="370.667" width="13.3333" height="168"/>
@@ -4084,18 +4084,14 @@
   <object id="77" type="coin" x="1224" y="513" width="21.3333" height="23.3333"/>
   <object id="78" type="coin" x="1028.67" y="515" width="21.3333" height="23.3333"/>
   <object id="79" type="coin" x="988" y="509" width="21.3333" height="23.3333"/>
-  <object id="80" type="coin" x="968" y="475.667" width="21.3333" height="23.3333"/>
-  <object id="81" type="coin" x="947.333" y="445" width="21.3333" height="23.3333"/>
+  <object id="80" type="coin" x="981.333" y="459" width="21.3333" height="23.3333"/>
+  <object id="81" type="coin" x="957.333" y="407.667" width="21.3333" height="23.3333"/>
   <object id="82" type="coin" x="926" y="427" width="21.3333" height="23.3333"/>
   <object id="83" type="coin" x="899.333" y="445.667" width="21.3333" height="23.3333"/>
-  <object id="85" type="coin" x="872" y="474.333" width="21.3333" height="23.3333"/>
-  <object id="86" type="coin" x="849.333" y="511" width="21.3333" height="23.3333"/>
-  <object id="87" type="coin" x="809.333" y="513.667" width="21.3333" height="23.3333"/>
-  <object id="88" type="coin" x="806" y="545.667" width="21.3333" height="23.3333"/>
-  <object id="89" type="coin" x="807.333" y="579.667" width="21.3333" height="23.3333"/>
-  <object id="90" type="coin" x="807.333" y="608.333" width="21.3333" height="23.3333"/>
+  <object id="85" type="coin" x="878" y="481.667" width="21.3333" height="23.3333"/>
   <object id="92" name="scalable" type="checkpoint" x="260" y="750" width="170.667" height="12.6667"/>
   <object id="93" type="sentry_billboard" x="547.333" y="805.333" width="17.3333" height="16.6667"/>
   <object id="94" type="level4_sentry1" x="660.667" y="646" width="26" height="25.3333"/>
+  <object id="95" type="level4_sentry2" x="1216" y="1026.67" width="26" height="26.6667"/>
  </objectgroup>
 </map>

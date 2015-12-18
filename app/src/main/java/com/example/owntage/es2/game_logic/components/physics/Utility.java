@@ -29,6 +29,12 @@ public class Utility {
         while(max > fp * 2.0f) {
             max -= fp * 2.0f;
         }
+        while(angle < 0) {
+            angle += fp * 2;
+        }
+        while(angle > fp * 2) {
+            angle -= fp * 2;
+        }
         if(min < max) {
             return angle >= min && angle <= max;
         } else {

@@ -1,14 +1,14 @@
 package com.example.owntage.es2;
 
-import android.app.AlertDialog;
-import android.app.Application;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.View;
 import android.view.Window;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.vk.sdk.VKAccessToken;
 import com.vk.sdk.VKCallback;
@@ -25,9 +25,9 @@ import com.example.owntage.es2.common.User;
 import com.vk.sdk.util.VKUtil;
 
 public class EndOfLevel extends Activity {
-    AlertDialog.Builder ad;
-    Context context;
     private int col;
+    private int level;
+    private int min;
     private static final String KEY_TOKEN = "vk_token";
     private String id;
     @Override
@@ -37,40 +37,48 @@ public class EndOfLevel extends Activity {
         setContentView(R.layout.activity_end_of_level);
 
         col=getIntent().getIntExtra("result",0);
-
+        level=getIntent().getIntExtra("level",0);
+        min=getIntent().getIntExtra("minimum",0);
         String[] fingerprints = VKUtil.getCertificateFingerprint(this, this.getPackageName());
-
-        context=EndOfLevel.this;
-
-        String title="Публикация результатов";
-        String message="Хотите опубликовать ВКонтакте результат в "+ Integer.toString(col) +  "?";
-        String button1String="Да";
-        String buttron2String="Нет";
-
-        ad = new AlertDialog.Builder(context);
-        ad.setTitle(title);
-        ad.setMessage(message);
-        ad.setPositiveButton(button1String, new PositiveOnclickListener());
-        ad.setNegativeButton(buttron2String, new NegativeOnClickListener());
-        ad.setCancelable(false);
-
-        ad.show();
+        Button btnAgree=(Button)findViewById(R.id.agree);
+        Button btnDisAgree=(Button)findViewById(R.id.disagree);
+        TextView textQ=(TextView)findViewById(R.id.question);
+        if(min>col)
+        {
+            btnAgree.setText(getResources().getText(R.string.yes));
+            btnDisAgree.setText(getResources().getText(R.string.no));
+            textQ.setText(getResources().getText(R.string.repeate));
+        }
+        else
+        {
+            btnAgree.setText(getResources().getText(R.string.agree_vk));
+            btnDisAgree.setText(getResources().getText(R.string.desagree_vk));
+            textQ.setText(getResources().getText(R.string.do_in_vk_next));
+        }
     }
-    private class PositiveOnclickListener implements DialogInterface.OnClickListener
+    public void onClickAgree(View view)
     {
-        @Override
-        public void onClick(DialogInterface dialog, int which) {
-            //вход в вк и публикация
+        if(min>col)
+        {
+            level--;
+
+        }
+        else {
             WriteNode();
         }
+        onClickDisagree(view);
     }
-
-    private class NegativeOnClickListener implements DialogInterface.OnClickListener
-    {
-        @Override
-        public void onClick(DialogInterface dialog, int which) {
-            finish();
-        }
+    private Intent intent;
+    public void onClickDisagree(View view) {
+        finish();
+        if(view.getId()==R.id.disagree && min<col)
+            return;
+        if(level+1> MenuActivity.N)
+            return;
+        intent = new Intent(EndOfLevel.this, MainActivity.class);
+        intent.putExtra("level_number", level + 1);
+        if(view.getId()==R.id.disagree)
+            startActivity(intent);
     }
 
     private void WriteNode()
@@ -96,6 +104,7 @@ public class EndOfLevel extends Activity {
     protected void onLoginFailed(VKError error) {
         Log.w(TAG, "onLoggedFailed: " + error);
         finish();
+        startActivity(intent);
     }
 
     @Override
@@ -118,12 +127,14 @@ public class EndOfLevel extends Activity {
     @SuppressWarnings("unchecked,deprecation")
     void startCurrentUserRequest() {
         VKRequest request = VKApi.wall().post(VKParameters.from(VKApiConst.OWNER_ID, id, VKApiConst.MESSAGE, getResources().getString(R.string.for_wall_before) + " " + col + " " + getResources().getString(R.string.for_wall_after)));
+
         request.attempts = 10;
         request.executeWithListener(new VKRequest.VKRequestListener() {
             @Override
             public void onComplete(VKResponse response) {
                 Log.i(TAG, "onComplete request");
                 finish();
+                startActivity(intent);
             }
 
             @Override

@@ -3,10 +3,6 @@ package com.example.owntage.es2;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -24,7 +20,7 @@ import java.util.List;
  * Created by Owntage on 11/28/2015.
  */
 public class MenuActivity extends Activity {
-    private final static int N = 20;
+    public final static int N = 2;
     private final static String TAG = MenuActivity.class.getSimpleName();
 
     private TextView textView;
@@ -40,7 +36,7 @@ public class MenuActivity extends Activity {
         textView = (TextView) findViewById(R.id.txt);
 
         for (int i = 0; i < N; i++) {
-            lst.add("Level" + i);
+            lst.add("Level" + (i+1));
         }
         recyclerView = (RecyclerView) findViewById(R.id.list);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -86,7 +82,7 @@ public class MenuActivity extends Activity {
         public void onBindViewHolder(ViewHolder holder, int position) {
             String str = items.get(position);
             holder.firstLine.setText(str);
-            holder.firstLine.setOnClickListener(new MyOnClickListener(position));
+            holder.firstLine.setOnClickListener(new MyOnClickListener(position+1));
         }
 
         @Override

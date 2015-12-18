@@ -1,5 +1,7 @@
 package com.example.owntage.es2.game_logic.components;
 
+import android.util.Log;
+
 import com.example.owntage.es2.game_logic.ComponentUpdate;
 import com.example.owntage.es2.game_logic.Event;
 import com.example.owntage.es2.game_logic.IComponent;
@@ -40,7 +42,11 @@ public class HealthComponent implements IComponent {
                         }
                     }
                 } else {
+
                     Float mappedDamage = collisionDamage.get(physicsEvent.collidedWith);
+                    if(physicsEvent.collidedWith.equals("") == false) {
+                        Log.e("collided with: " , physicsEvent.collidedWith);
+                    }
                     if(mappedDamage != null) {
                         currentHealth -= mappedDamage;
                         if(currentHealth <= 0) {

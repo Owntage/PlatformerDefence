@@ -77,7 +77,7 @@ public class World {
         Collection<Body> activeBodiesCollection = activeBodies.values();
         for(Body bodyA : activeBodiesCollection) {
             for(Body bodyB : bodies.values()) {
-                if(isColliding(bodyA, bodyB)) {
+                if(isColliding(bodyA, bodyB) && bodyA != bodyB) {
                     if(bodyB.mass != 0.0f) {
                         setBodyActive(bodyB);
                     }

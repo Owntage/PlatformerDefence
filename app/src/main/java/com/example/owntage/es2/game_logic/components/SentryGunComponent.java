@@ -24,6 +24,10 @@ public class SentryGunComponent implements IComponent {
     float radius;
     float refreshTime = 0.3f;
     float currentRefreshTime = 0.0f;
+
+    float minScanAngle = -1.0f;
+    float maxScanAngle = 1.0f;
+    boolean scanningClockwise = true;
     Body target;
     Body self;
     String targetType;
@@ -42,6 +46,22 @@ public class SentryGunComponent implements IComponent {
                 if(target == null || currentRefreshTime > refreshTime) {
                     localEvents.add(new TargetRequestEvent(targetType, radius));
                     currentRefreshTime = 0.0f;
+                    if(target == null) {
+                        if(!Utility.angleInRange(angle, minScanAngle, maxScanAngle)) {
+                            float destAngle;
+                            if(Utility.getDeltaAngle(angle, minScanAngle) < Utility.getDeltaAngle(angle, maxScanAngle)) {
+                                destAngle = minScanAngle;
+                            } else {
+                                destAngle = maxScanAngle;
+                            }
+                            scanningClockwise = !Utility.angleInRange(destAngle, angle, angle + (float) Math.PI);
+                        }
+                        if(!scanningClockwise) {
+                            angle += angularVelocity / 60.0f;
+                        } else {
+                            angle -= angularVelocity / 60.0f;
+                        }
+                    }
                 } else {
                     float dx = target.getPosition().getX() - self.getPosition().getX();
                     float dy = target.getPosition().getY() - self.getPosition().getY();
@@ -136,6 +156,12 @@ public class SentryGunComponent implements IComponent {
                         break;
                     case "tripod_texture":
                         result.tripodTexture = nodeValue;
+                        break;
+                    case "min_scan_angle":
+                        result.minScanAngle = Float.parseFloat(nodeValue);
+                        break;
+                    case "max_scan_angle":
+                        result.maxScanAngle = Float.parseFloat(nodeValue);
                         break;
                 }
             }

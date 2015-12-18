@@ -105,14 +105,15 @@ public class LevelLoader {
                     StringBuilder imageSourceBuilder = new StringBuilder();
                     imageSource = imageAttributes.getNamedItem("source").getNodeValue();
                     for(int j = 0; j < imageSource.length(); j++) {
-                        if(imageSource.charAt(i) == '.') {
+                        if(imageSource.charAt(j) == '.') {
                             break;
                         } else {
-                            imageSourceBuilder.append(imageSource.charAt(i));
+                            imageSourceBuilder.append(imageSource.charAt(j));
                         }
                     }
                     imageSource = imageSourceBuilder.toString();
-                    imageSource = "ts";
+                    Log.e("image: ", imageSource);
+                    //imageSource = "ts";
                 }
             }
         }
@@ -149,10 +150,10 @@ public class LevelLoader {
                             gid -= tilesetOffset;
                             float posX = count % width + 0.5f;
                             float posY = 0.5f + height - (count / width);
-                            float fTilesetWidth = (float) tilesetWidth;
-                            float fTilesetHeight = (float) tilesetHeight;
-                            float texCoordX = (float) (gid % tilesetWidth) / fTilesetWidth;
-                            float texCoordY = (float) (gid / tilesetWidth) / fTilesetHeight;
+                            double fTilesetWidth = (double) tilesetWidth;
+                            double fTilesetHeight = (double) tilesetHeight;
+                            double texCoordX = (double) (gid % tilesetWidth) / fTilesetWidth;
+                            double texCoordY = ((double) (gid / tilesetWidth)) / fTilesetHeight;
 
                             coords.add(-0.5f + posX); coords.add(-0.5f + posY);
                             coords.add(0.5f + posX); coords.add(-0.5f + posY);
@@ -161,13 +162,16 @@ public class LevelLoader {
                             coords.add(0.5f + posX); coords.add(0.5f + posY);
                             coords.add(-0.5f + posX); coords.add(0.5f + posY);
 
+                            double d = -0.0001;
 
-                            texCoords.add(0.0f / fTilesetWidth + texCoordX); texCoords.add(1.0f / fTilesetWidth + texCoordY);
-                            texCoords.add(1.0f / fTilesetWidth + texCoordX); texCoords.add(1.0f / fTilesetWidth + texCoordY);
-                            texCoords.add(1.0f / fTilesetWidth + texCoordX); texCoords.add(0.0f / fTilesetHeight + texCoordY);
-                            texCoords.add(0.0f / fTilesetWidth + texCoordX); texCoords.add(1.0f / fTilesetWidth + texCoordY);
-                            texCoords.add(1.0f / fTilesetWidth + texCoordX); texCoords.add(0.0f / fTilesetHeight + texCoordY);
-                            texCoords.add(0.0f / fTilesetWidth + texCoordX); texCoords.add(0.0f / fTilesetHeight + texCoordY);
+
+
+                            texCoords.add((float)(0.0 / fTilesetWidth + texCoordX - d)); texCoords.add((float)(1.0 / fTilesetHeight + texCoordY + d));
+                            texCoords.add((float)(1.0 / fTilesetWidth + texCoordX + d)); texCoords.add((float)(1.0 / fTilesetHeight + texCoordY + d));
+                            texCoords.add((float)(1.0 / fTilesetWidth + texCoordX + d)); texCoords.add((float)(0.0 / fTilesetHeight + texCoordY - d));
+                            texCoords.add((float)(0.0 / fTilesetWidth + texCoordX - d)); texCoords.add((float)(1.0 / fTilesetHeight + texCoordY + d));
+                            texCoords.add((float)(1.0 / fTilesetWidth + texCoordX + d)); texCoords.add((float)(0.0 / fTilesetHeight + texCoordY - d));
+                            texCoords.add((float)(0.0 / fTilesetWidth + texCoordX - d)); texCoords.add((float)(0.0 / fTilesetHeight + texCoordY - d));
                         }
                         count++;
                     }
@@ -187,6 +191,7 @@ public class LevelLoader {
                 float x = Float.parseFloat(objectAttributes.getNamedItem("x").getNodeValue());
                 float y = Float.parseFloat(objectAttributes.getNamedItem("y").getNodeValue());
                 Node typeNode = objectAttributes.getNamedItem("type");
+                Node nameNode = objectAttributes.getNamedItem("name");
                 float objectWidth = Float.parseFloat(objectAttributes.getNamedItem("width").getNodeValue());
                 float objectHeight = Float.parseFloat(objectAttributes.getNamedItem("height").getNodeValue());
                 if(typeNode == null) {
@@ -218,6 +223,13 @@ public class LevelLoader {
                             positionSetEvent.global = false;
                             positionSetEvent.actorID = id;
                             gameLogic.onEvent(positionSetEvent);
+
+                            if(nameNode != null && nameNode.getNodeValue().equals("scalable")) {
+                                PositionSetEvent scale = new PositionSetEvent(objectWidth / 32.0f, objectHeight / 32.0f, "scale_set");
+                                scale.global = false;
+                                scale.actorID = id;
+                                gameLogic.onEvent(scale);
+                            }
 
                             if(type.equals("checkpoint")) {
                                 PositionSetEvent checkpointSet = new PositionSetEvent(objectWidth / 64.0f + x / 32.0f, height - objectHeight / 64.0f + 1.0f - y / 32.0f, "checkpoint_set", id);

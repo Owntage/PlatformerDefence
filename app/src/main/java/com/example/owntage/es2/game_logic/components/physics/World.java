@@ -74,6 +74,13 @@ public class World {
             body.collided = false;
         }
 
+        activeBodies.clear();
+        for(Body body : bodies.values()) {
+            if(body.getVelocity().lengthSquared() > 0) {
+                activeBodies.put(body.id, body);
+            }
+        }
+
         Collection<Body> activeBodiesCollection = activeBodies.values();
         for(Body bodyA : activeBodiesCollection) {
             for(Body bodyB : bodies.values()) {

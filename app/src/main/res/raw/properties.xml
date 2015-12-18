@@ -22,6 +22,10 @@
 				<type>water</type>
 				<damage>100</damage>
 			</collision_damage>
+			<collision_damage>
+				<type>monster1</type>
+				<damage>100</damage>
+			</collision_damage>
 		</health>
 		<weapon>
 			<radius>10.0f</radius>
@@ -165,5 +169,37 @@
 			<body_type>sensor</body_type>
 		</physics>
 		<signal>finish</signal>
+	</actor>
+	<actor id = "monster1">
+		<physics>
+			<body_name>monster1</body_name>
+			<body_type>dynamic</body_type>
+			<mass>1.0</mass>
+			<restitution>0.3</restitution>
+			<scale_x>1.0</scale_x>
+			<scale_y>1.0</scale_y>
+			<max_speed>2.0</max_speed>
+			<jump_height>3.5</jump_height>
+		</physics>
+		<monster>monster_signal</monster>
+		<texture>
+			<animation>
+				<name>default</name>
+				<image>monster1</image>
+				<delay>1000</delay>
+			</animation>
+		</texture>
+	</actor>
+	<actor id = "monster_signal">
+		<physics>
+			<body_type>sensor</body_type>
+		</physics>
+		<signal>monster_signal</signal>
+	</actor>
+	<actor id = "monster_reverse">
+		<physics>
+			<body_type>sensor</body_type>
+			<body_name>reverse</body_name>
+		</physics>
 	</actor>
 </properties>

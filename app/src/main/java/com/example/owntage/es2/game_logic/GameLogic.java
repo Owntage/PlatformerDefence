@@ -21,7 +21,7 @@ public class GameLogic {
 
     public void onEvent(Event event) {
 
-        if(event.component == "delete") {
+        if(event.component.equals("delete")) {
             Actor actor = actors.get(event.actorID);
             actor.onDestroy();
             actor.id = "delete";

@@ -18,7 +18,7 @@ public class Texture {
     {
 
         int identifier = resources.getIdentifier(filename, "drawable", MainActivity.PACKAGE_NAME);
-
+        Log.e("texture identifier: ", "value: " + identifier + " filename: " + filename);
         final BitmapFactory.Options options = new BitmapFactory.Options();
         options.inScaled = false;
 

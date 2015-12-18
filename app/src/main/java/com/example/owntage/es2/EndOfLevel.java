@@ -37,6 +37,7 @@ public class EndOfLevel extends Activity {
         setContentView(R.layout.activity_end_of_level);
 
 
+
         col=getIntent().getIntExtra("result",0);
 
         String[] fingerprints = VKUtil.getCertificateFingerprint(this, this.getPackageName());
@@ -63,7 +64,6 @@ public class EndOfLevel extends Activity {
         public void onClick(DialogInterface dialog, int which) {
             //вход в вк и публикация
             WriteNode();
-           // finish();
         }
     }
 

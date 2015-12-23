@@ -24,92 +24,85 @@ import com.vk.sdk.api.model.VKScopes;
 import com.example.owntage.es2.common.User;
 import com.vk.sdk.util.VKUtil;
 
+import org.w3c.dom.Text;
+
 public class EndOfLevel extends Activity {
     private int col;
     private int level;
     private int min;
     private static final String KEY_TOKEN = "vk_token";
     private String id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_end_of_level);
 
-        col=getIntent().getIntExtra("result",0);
-        level=getIntent().getIntExtra("level",0);
-        min=getIntent().getIntExtra("minimum",0);
-        String[] fingerprints = VKUtil.getCertificateFingerprint(this, this.getPackageName());
-        Button btnAgree=(Button)findViewById(R.id.agree);
-        Button btnDisAgree=(Button)findViewById(R.id.disagree);
-        TextView textQ=(TextView)findViewById(R.id.question);
-        if(min>col)
-        {
-            btnAgree.setText(getResources().getText(R.string.yes));
-            btnDisAgree.setText(getResources().getText(R.string.no));
-            textQ.setText(getResources().getText(R.string.repeate));
-        }
-        else
-        {
-            btnAgree.setText(getResources().getText(R.string.agree_vk));
-            btnDisAgree.setText(getResources().getText(R.string.desagree_vk));
-            textQ.setText(getResources().getText(R.string.do_in_vk_next));
-        }
-    }
-    public void onClickAgree(View view)
-    {
-        if(min>col)
-        {
-            level--;
+        col = getIntent().getIntExtra("result", 0);
+        level = getIntent().getIntExtra("level", 0);
+        min = getIntent().getIntExtra("minimum", 0);
+        //String[] fingerprints = VKUtil.getCertificateFingerprint(this, this.getPackageName());
 
+        Button vk = (Button) findViewById(R.id.vk), next = (Button) findViewById(R.id.next);
+        TextView txt=(TextView)findViewById(R.id.result);
+        if (min > col) {
+            vk.setVisibility(View.GONE);
+            next.setVisibility(View.GONE);
+        } else {
+            vk.setVisibility(View.VISIBLE);
+            if (level < MenuActivity.N)
+                next.setVisibility(View.VISIBLE);
+            else
+                next.setVisibility(View.GONE);
         }
-        else {
-            WriteNode();
+        txt.setText(getResources().getText(R.string.score)+" "+col);
+        if(level==MenuActivity.Open && min<=col)
+        {
+            MenuActivity.Open++;
         }
-        onClickDisagree(view);
     }
-    private Intent intent;
-    public void onClickDisagree(View view) {
+
+    public void onClickNext(View view) {
         finish();
-        if(view.getId()==R.id.disagree && min<col)
-            return;
-        if(level+1> MenuActivity.N)
-            return;
-        intent = new Intent(EndOfLevel.this, MainActivity.class);
+
+        Intent intent = new Intent(EndOfLevel.this, MainActivity.class);
         intent.putExtra("level_number", level + 1);
-        if(view.getId()==R.id.disagree)
-            startActivity(intent);
+        startActivity(intent);
     }
 
-    private void WriteNode()
-    {
-        VKAccessToken token=VKAccessToken.tokenFromSharedPreferences(this,KEY_TOKEN);
-        if(token!=null)
-        {
+    public void onClickRepeate(View view) {
+        finish();
+        Intent intent = new Intent(EndOfLevel.this, MainActivity.class);
+        intent.putExtra("level_number", level);
+        startActivity(intent);
+    }
+
+    public void onClickVK(View view) {
+        VKAccessToken token = VKAccessToken.tokenFromSharedPreferences(this, KEY_TOKEN);
+        if (token != null) {
             onLoginIn(token);
-        }
-        else
-        {
-            VKSdk.login(this,VKScopes.WALL);
+        } else {
+            VKSdk.login(this, VKScopes.WALL);
         }
     }
 
-    protected void onLoginIn(VKAccessToken token)
-    {
-        Log.i(TAG,"onLoginIn: "+token);
-        id=token.userId;
+    public void onClickMenu(View view) {
+        finish();
+    }
+
+    protected void onLoginIn(VKAccessToken token) {
+        Log.i(TAG, "onLoginIn: " + token);
+        id = token.userId;
         startCurrentUserRequest();
     }
 
     protected void onLoginFailed(VKError error) {
         Log.w(TAG, "onLoggedFailed: " + error);
-        finish();
-        startActivity(intent);
     }
 
     @Override
-    protected void onActivityResult(int requestCode,int resultCode,Intent data)
-    {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         VKSdk.onActivityResult(requestCode, resultCode, data, new VKCallback<VKAccessToken>() {
             @Override
             public void onResult(VKAccessToken res) {
@@ -133,8 +126,6 @@ public class EndOfLevel extends Activity {
             @Override
             public void onComplete(VKResponse response) {
                 Log.i(TAG, "onComplete request");
-                finish();
-                startActivity(intent);
             }
 
             @Override
@@ -144,5 +135,5 @@ public class EndOfLevel extends Activity {
         });
     }
 
-    private static final String TAG="EndOfLevel";
+    private static final String TAG = "EndOfLevel";
 }

@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,31 +21,36 @@ import java.util.List;
 public class MenuActivity extends Activity {
     public final static int N = 2;
     private final static String TAG = MenuActivity.class.getSimpleName();
+    public static int Open = 1;
 
-    private TextView textView;
     private final List<String> lst = new ArrayList<String>();
     private RecyclerView recyclerView;
     private SimpleRecycleAdapter adapter;
 
+    @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.menu_layout);
 
-        textView = (TextView) findViewById(R.id.txt);
-
+        if (bundle != null) {
+            int a = bundle.getInt("open");
+            if (a > Open) {
+                Open = a;
+            }
+        }
         for (int i = 0; i < N; i++) {
-            lst.add("Level" + (i+1));
+            lst.add("Level" + (i + 1));
         }
         recyclerView = (RecyclerView) findViewById(R.id.list);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new SimpleRecycleAdapter(this, lst);
         recyclerView.setAdapter(adapter);
-        /*
+    }
 
-        level1.setOnClickListener(new MyOnClickListener(1));
-        level2.setOnClickListener(new MyOnClickListener(2));*/
-
+    @Override
+    protected void onSaveInstanceState(Bundle bundle) {
+        bundle.putInt("open", Open);
     }
 
     private class MyOnClickListener implements View.OnClickListener {
@@ -57,6 +61,7 @@ public class MenuActivity extends Activity {
         }
 
         public void onClick(View v) {
+            finish();
             Intent intent = new Intent(MenuActivity.this, MainActivity.class);
             intent.putExtra("level_number", levelNumber);
             startActivity(intent);
@@ -82,7 +87,10 @@ public class MenuActivity extends Activity {
         public void onBindViewHolder(ViewHolder holder, int position) {
             String str = items.get(position);
             holder.firstLine.setText(str);
-            holder.firstLine.setOnClickListener(new MyOnClickListener(position+1));
+            holder.firstLine.setOnClickListener(new MyOnClickListener(position + 1));
+            if (position >= Open) {
+                holder.firstLine.setEnabled(false);
+            }
         }
 
         @Override

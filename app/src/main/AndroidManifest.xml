@@ -31,7 +31,8 @@
             android:screenOrientation="landscape" />
         <activity
             android:name=".EndOfLevel"
-            android:label="@string/title_activity_end_of_level"></activity>
+            android:label="@string/title_activity_end_of_level">
+        </activity>
     </application>
 
 </manifest>

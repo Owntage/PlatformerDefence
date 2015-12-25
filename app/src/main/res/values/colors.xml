@@ -3,4 +3,11 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="vk2">#FFFFFF</color>
+    <color name="next1">#56c228</color>
+    <color name="next2">#FFFFFF</color>
+    <color name="repeat1">#FFFF99</color>
+    <color name="repeat2">#FFFFFF</color>
+    <color name="menu1">#bd020b</color>
+    <color name="menu2">#FFFFFF</color>
 </resources>

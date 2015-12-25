@@ -2,13 +2,8 @@
     <string name="app_name">ES2</string>
     <string name="title_activity_end_of_level">EndOfLevel</string>
     <integer name="com_vk_sdk_AppId">5188470</integer>
-    <string name="for_wall_before">Я набрал в игре ES2 </string>
+    <string name="for_wall_before">Я набрал в игре PlatformerDefence </string>
     <string name="for_wall_after"> очков. А ты сколько сможешь?</string>
-    <string name="do_in_vk_next">Хотите перейти на следующий уровень и опубликовать результаты ВКонтакте?</string>
-    <string name="repeate">Хотите повторить уровень?</string>
-    <string name="agree_vk">Опубликовать</string>
-    <string name="desagree_vk">Не опубликовывать</string>
-    <string name="yes">Да</string>
-    <string name="no">Нет</string>
+    <string name="score">Your score:</string>
 
 </resources>

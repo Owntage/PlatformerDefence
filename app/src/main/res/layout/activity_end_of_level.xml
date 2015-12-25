@@ -16,15 +16,21 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="10">
+        android:layout_weight="10"
+        android:baselineAligned="false"
+        android:clickable="false">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Large Text"
-            android:id="@+id/result" />
-        
+            android:text="@string/score"
+            android:textSize="90dp"
+            android:id="@+id/result"
+            android:layout_gravity="center"
+            android:gravity="center_horizontal"
+            android:textColor="@android:color/holo_red_light"/>
+
     </LinearLayout>
 
     <LinearLayout
@@ -32,12 +38,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/do_in_vk_next"
-            android:id="@+id/question"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -47,17 +47,38 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/agree_vk"
-                android:id="@+id/agree"
-                android:onClick="onClickAgree"/>
+                android:id="@+id/vk"
+                android:onClick="onClickVK"
+                android:background="@drawable/selector_for_vk"
+                android:text="VK"/>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/desagree_vk"
-                android:id="@+id/disagree"
-                android:onClick="onClickDisagree"/>
+                android:id="@+id/repeat"
+                android:onClick="onClickRepeate"
+                android:background="@drawable/selector_for_repeat"
+                android:text="Repeate"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/next"
+                android:onClick="onClickNext"
+                android:background="@drawable/selector_for_next"
+                android:text="Next"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/menu"
+                android:onClick="onClickMenu"
+                android:background="@drawable/selector_for_menu"
+                android:text="Menu"
+                android:textColor="@color/selector_for_menu" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

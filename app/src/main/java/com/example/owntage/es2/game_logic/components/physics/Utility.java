@@ -29,10 +29,37 @@ public class Utility {
         while(max > fp * 2.0f) {
             max -= fp * 2.0f;
         }
+        while(angle < 0) {
+            angle += fp * 2;
+        }
+        while(angle > fp * 2) {
+            angle -= fp * 2;
+        }
         if(min < max) {
             return angle >= min && angle <= max;
         } else {
             return angle >= min || angle <= max;
         }
+    }
+    public static float getDeltaAngle(float angle1, float angle2) {
+        float fp = (float) Math.PI;
+        while(angle1 < 0) {
+            angle1 += fp * 2;
+        }
+        while(angle1 > fp * 2) {
+            angle1 -= fp * 2;
+        }
+        while(angle2 < 0) {
+            angle2 += fp * 2;
+        }
+        while(angle2 > fp * 2) {
+            angle2 -= fp * 2;
+        }
+        if(angle1 > angle2) {
+            float angle3 = angle1;
+            angle1 = angle2;
+            angle2 = angle3;
+        }
+        return (angle2 - angle1) % fp;
     }
 }

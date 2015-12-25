@@ -24,6 +24,13 @@ public class SentryGunComponent implements IComponent {
     float radius;
     float refreshTime = 0.3f;
     float currentRefreshTime = 0.0f;
+
+    float minScanAngle = -1.0f;
+    float maxScanAngle = 1.0f;
+    float scanDelta = 0.0f;
+    boolean scanningClockwise = true;
+    boolean firstScan = true;
+    boolean scanRangeReached = false;
     Body target;
     Body self;
     String targetType;
@@ -39,10 +46,63 @@ public class SentryGunComponent implements IComponent {
         switch(event.component) {
             case "timer":
                 currentRefreshTime += 1.0f / 60.0f;
+                scanDelta += 1.0f / 60.0f;
                 if(target == null || currentRefreshTime > refreshTime) {
                     localEvents.add(new TargetRequestEvent(targetType, radius));
                     currentRefreshTime = 0.0f;
+                    //if(target == null) {
+                    //    if(!Utility.angleInRange(angle, minScanAngle, maxScanAngle)) {
+                    //        float destAngle;
+                    //        if(Utility.getDeltaAngle(angle, minScanAngle) < Utility.getDeltaAngle(angle, maxScanAngle)) {
+                    //            destAngle = minScanAngle;
+                    //        } else {
+                    //            destAngle = maxScanAngle;
+                    //        }
+                    //        scanningClockwise = !Utility.angleInRange(destAngle, angle, angle + (float) Math.PI);
+                     //   }
+                     //   if(!scanningClockwise) {
+                     //       angle -= angularVelocity / 60.0f;
+                     //   } else {
+                     //       angle += angularVelocity / 60.0f;
+                     //   }
+                    if(target == null) {
+                        Log.e("sentry: ", "angle: " + angle + " minScanAngle: " + minScanAngle + " maxScanAngle: " + maxScanAngle);
+                        if(firstScan) {
+                            firstScan = false;
+                            if(!Utility.angleInRange(angle, minScanAngle, maxScanAngle)) {
+                                float destAngle;
+                                if(Utility.getDeltaAngle(angle, minScanAngle) < Utility.getDeltaAngle(angle, maxScanAngle)) {
+                                    destAngle = minScanAngle;
+                                } else {
+                                    destAngle = maxScanAngle;
+                                }
+                                scanningClockwise = !Utility.angleInRange(destAngle, angle, angle + (float) Math.PI);
+                                scanRangeReached = false;
+                            } else {
+                                scanRangeReached = true;
+                            }
+                        }
+                        if(!scanRangeReached) {
+
+                            if(Utility.angleInRange(angle, minScanAngle, maxScanAngle)) {
+                                scanRangeReached = true;
+                                scanDelta = 0.0f;
+                            }
+                        } else {
+                            if(!Utility.angleInRange(angle, minScanAngle, maxScanAngle) && scanDelta > 0.2f) {
+                                scanningClockwise = !scanningClockwise;
+                                scanDelta = 0.0f;
+                            }
+                        }
+                        if(scanningClockwise) {
+                            angle -= angularVelocity / 60.0f;
+                        } else {
+                            angle += angularVelocity / 60.0f;
+                        }
+                    }
                 } else {
+                    firstScan = true;
+                    scanRangeReached = false;
                     float dx = target.getPosition().getX() - self.getPosition().getX();
                     float dy = target.getPosition().getY() - self.getPosition().getY();
                     float rotationDirection;
@@ -136,6 +196,12 @@ public class SentryGunComponent implements IComponent {
                         break;
                     case "tripod_texture":
                         result.tripodTexture = nodeValue;
+                        break;
+                    case "min_scan_angle":
+                        result.minScanAngle = Float.parseFloat(nodeValue);
+                        break;
+                    case "max_scan_angle":
+                        result.maxScanAngle = Float.parseFloat(nodeValue);
                         break;
                 }
             }

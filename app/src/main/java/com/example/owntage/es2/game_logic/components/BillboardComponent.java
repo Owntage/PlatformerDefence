@@ -15,7 +15,7 @@ import java.util.TreeMap;
  */
 public class BillboardComponent implements IComponent {
 
-    float timeSinceCollided;
+    float timeSinceCollided = 100000;
     float displayTime;
     String actorType;
     String billboardTexture;

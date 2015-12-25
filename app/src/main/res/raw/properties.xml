@@ -16,7 +16,7 @@
 			<health>100</health>
 			<raycast_damage>
 				<type>sentry</type>
-				<damage>3</damage>
+				<damage>100</damage>
 			</raycast_damage>
 			<collision_damage>
 				<type>water</type>
@@ -147,6 +147,24 @@
 			<display_time>2.0</display_time>
 		</billboard>
 	</actor>
+	<actor id = "sentry_billboard">
+		<physics>
+			<body_name>billboard</body_name>
+			<body_type>sensor</body_type>
+		</physics>
+		<billboard>
+			<texture>sentry_alert</texture>
+			<actor_type>player</actor_type>
+			<display_time>2.0</display_time>
+		</billboard>
+		<texture>
+			<animation>
+				<image>question</image>
+				<name>default</name>
+				<delay>100000</delay>
+			</animation>
+		</texture>
+	</actor>
 	<actor id = "checkpoint">
 		<physics>
 			<body_name>checkpoint</body_name>
@@ -201,5 +219,100 @@
 			<body_type>sensor</body_type>
 			<body_name>reverse</body_name>
 		</physics>
+	</actor>
+	<actor id = "level4_sentry1">
+		<physics>
+			<body_name>sentry</body_name>
+			<body_type>dynamic</body_type>
+			<mass>1</mass>
+			<restitution>0.0</restitution>
+		</physics>
+		<texture>
+			<animation>
+				<image>red_sentry</image>
+				<delay>1000000</delay>
+				<name>default</name>
+			</animation>
+		</texture>
+		<weapon>
+			<holders>1000000</holders>
+			<shots>30000000</shots>
+			<radius>15.0</radius>
+			<reload_time>2.0</reload_time>
+			<shooting_period>0.2</shooting_period>
+
+		</weapon>
+		<sentry>
+			<radius>15.0</radius>
+			<tripod_texture>tripod</tripod_texture>
+			<angular_velocity>2</angular_velocity>
+			<target_type>player</target_type>
+			<min_scan_angle>-1</min_scan_angle>
+			<max_scan_angle>1.5</max_scan_angle>
+		</sentry>
+	</actor>
+	<actor id = "level4_sentry2">
+		<physics>
+			<body_name>sentry</body_name>
+			<body_type>dynamic</body_type>
+			<mass>1</mass>
+			<restitution>0.0</restitution>
+		</physics>
+		<texture>
+			<animation>
+				<image>red_sentry</image>
+				<delay>1000000</delay>
+				<name>default</name>
+			</animation>
+		</texture>
+		<weapon>
+			<holders>1000000</holders>
+			<shots>30000000</shots>
+			<radius>15.0</radius>
+			<reload_time>2.0</reload_time>
+			<shooting_period>0.2</shooting_period>
+
+		</weapon>
+		<sentry>
+			<radius>8.0</radius>
+			<tripod_texture>tripod</tripod_texture>
+			<angular_velocity>1.5</angular_velocity>
+			<target_type>player</target_type>
+			<min_scan_angle>-1</min_scan_angle>
+			<max_scan_angle>4.5</max_scan_angle>
+		</sentry>
+	</actor>
+	<actor id = "level5_sentry">
+		<physics>
+			<body_name>sentry</body_name>
+			<body_type>dynamic</body_type>
+			<mass>1</mass>
+			<restitution>0.0</restitution>
+			<max_speed>7.0</max_speed>
+		</physics>
+		<texture>
+			<animation>
+				<image>red_sentry</image>
+				<delay>1000000</delay>
+				<name>default</name>
+			</animation>
+		</texture>
+		<weapon>
+			<holders>1000000</holders>
+			<shots>30000000</shots>
+			<radius>15.0</radius>
+			<reload_time>2.0</reload_time>
+			<shooting_period>0.2</shooting_period>
+
+		</weapon>
+		<sentry>
+			<radius>7.0</radius>
+			<tripod_texture>wheels_tripod</tripod_texture>
+			<angular_velocity>10</angular_velocity>
+			<target_type>player</target_type>
+			<min_scan_angle>0.1</min_scan_angle>
+			<max_scan_angle>3.14</max_scan_angle>
+		</sentry>
+		<monster>monster_signal</monster>
 	</actor>
 </properties>

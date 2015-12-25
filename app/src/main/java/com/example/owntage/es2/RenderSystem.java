@@ -139,11 +139,7 @@ class DrawableActor {
             traceQuad.draw(true);
             reloadQuad.draw(true);
         }
-        if(healthQuad != null) {
-            healthQuad.x = quad.x;
-            healthQuad.y = quad.y + quad.scaleY / 2.0f + 0.75f;
-            healthQuad.draw(true);
-        }
+
         if(tripodQuad != null) {
             tripodQuad.x = quad.x;
             tripodQuad.y = quad.y;
@@ -155,6 +151,13 @@ class DrawableActor {
             billboardQuad.draw(true);
         }
         quad.draw(true);
+        if(healthQuad != null) {
+            shader.setColor(1.0f, 1.0f, 1.0f, 0.5f);
+            healthQuad.x = quad.x;
+            healthQuad.y = quad.y + quad.scaleY / 2.0f + 0.75f;
+            healthQuad.draw(true);
+            shader.setColor(1.0f, 1.0f, 1.0f, 1.0f);
+        }
     }
 }
 

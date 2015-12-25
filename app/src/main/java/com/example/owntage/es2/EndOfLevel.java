@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
 import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -21,17 +20,13 @@ import com.vk.sdk.api.VKRequest;
 import com.vk.sdk.api.VKResponse;
 import com.vk.sdk.api.model.VKScopes;
 
-import com.example.owntage.es2.common.User;
-import com.vk.sdk.util.VKUtil;
-
-import org.w3c.dom.Text;
-
 public class EndOfLevel extends Activity {
     private int col;
     private int level;
     private int min;
     private static final String KEY_TOKEN = "vk_token";
     private String id;
+    private boolean flage_finish = true, flage_called_finish=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +59,8 @@ public class EndOfLevel extends Activity {
     }
 
     public void onClickNext(View view) {
-        finish();
+        if(flage_finish)
+            finish();
 
         Intent intent = new Intent(EndOfLevel.this, MainActivity.class);
         intent.putExtra("level_number", level + 1);
@@ -72,13 +68,15 @@ public class EndOfLevel extends Activity {
     }
 
     public void onClickRepeate(View view) {
-        finish();
+        if(flage_finish)
+            finish();
         Intent intent = new Intent(EndOfLevel.this, MainActivity.class);
         intent.putExtra("level_number", level);
         startActivity(intent);
     }
 
     public void onClickVK(View view) {
+        flage_finish =false;
         VKAccessToken token = VKAccessToken.tokenFromSharedPreferences(this, KEY_TOKEN);
         if (token != null) {
             onLoginIn(token);
@@ -88,7 +86,10 @@ public class EndOfLevel extends Activity {
     }
 
     public void onClickMenu(View view) {
-        finish();
+        if(flage_finish)
+            finish();
+        Intent intent=new Intent(EndOfLevel.this,MenuActivity.class);
+        startActivity(intent);
     }
 
     protected void onLoginIn(VKAccessToken token) {
@@ -99,6 +100,9 @@ public class EndOfLevel extends Activity {
 
     protected void onLoginFailed(VKError error) {
         Log.w(TAG, "onLoggedFailed: " + error);
+        flage_finish=true;
+        if(flage_called_finish)
+            finish();
     }
 
     @Override
@@ -126,6 +130,9 @@ public class EndOfLevel extends Activity {
             @Override
             public void onComplete(VKResponse response) {
                 Log.i(TAG, "onComplete request");
+                flage_finish=true;
+                if(flage_called_finish)
+                    finish();
             }
 
             @Override

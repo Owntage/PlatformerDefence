@@ -49,7 +49,8 @@
                 android:layout_weight="1"
                 android:id="@+id/vk"
                 android:onClick="onClickVK"
-                android:background="#fffff0" />
+                android:background="#606ace"
+                android:text="VK"/>
 
             <Button
                 android:layout_width="wrap_content"
@@ -57,7 +58,8 @@
                 android:layout_weight="1"
                 android:id="@+id/repeate"
                 android:onClick="onClickRepeate"
-                android:background="#ffff0f" />
+                android:background="#ffffff"
+                android:text="Repeate"/>
 
             <Button
                 android:layout_width="wrap_content"
@@ -65,7 +67,8 @@
                 android:layout_weight="1"
                 android:id="@+id/next"
                 android:onClick="onClickNext"
-                android:background="#fff0ff" />
+                android:background="#56c228"
+                android:text="Next"/>
 
             <Button
                 android:layout_width="wrap_content"
@@ -73,7 +76,9 @@
                 android:layout_weight="1"
                 android:id="@+id/menu"
                 android:onClick="onClickMenu"
-                android:background="#ff0fff" />
+                android:background="#bd020b"
+                android:text="Menu"
+                android:textColor="#ffffff" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

@@ -61,6 +61,7 @@ public class MenuActivity extends Activity {
         }
 
         public void onClick(View v) {
+            finish();
             Intent intent = new Intent(MenuActivity.this, MainActivity.class);
             intent.putExtra("level_number", levelNumber);
             startActivity(intent);

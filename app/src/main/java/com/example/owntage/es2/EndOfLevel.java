@@ -58,6 +58,14 @@ public class EndOfLevel extends Activity {
         }
     }
 
+    @Override
+    public void onBackPressed()
+    {
+        finish();
+        Intent intent=new Intent(EndOfLevel.this, MenuActivity.class);
+        startActivity(intent);
+    }
+
     public void onClickNext(View view) {
         if(flage_finish)
             finish();

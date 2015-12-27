@@ -41,6 +41,14 @@ public class MainActivity extends Activity {
         }
     }
 
+    @Override
+    public void onBackPressed()
+    {
+        finish();
+        Intent intent=new Intent(MainActivity.this, MenuActivity.class);
+        startActivity(intent);
+    }
+
     public void onStart() {
         super.onStart();
         Log.e("activity", "onStart");

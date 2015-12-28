@@ -84,6 +84,8 @@ public class EndOfLevel extends Activity {
     }
 
     public void onClickVK(View view) {
+        Button vk = (Button) findViewById(R.id.vk);
+        vk.setVisibility(View.GONE);
         flage_finish =false;
         VKAccessToken token = VKAccessToken.tokenFromSharedPreferences(this, KEY_TOKEN);
         if (token != null) {
@@ -109,6 +111,8 @@ public class EndOfLevel extends Activity {
     protected void onLoginFailed(VKError error) {
         Log.w(TAG, "onLoggedFailed: " + error);
         flage_finish=true;
+        Button vk = (Button) findViewById(R.id.vk);
+        vk.setVisibility(View.VISIBLE);
         if(flage_called_finish)
             finish();
     }

@@ -59,7 +59,7 @@
                 android:id="@+id/repeat"
                 android:onClick="onClickRepeate"
                 android:background="@drawable/selector_for_repeat"
-                android:text="Repeate"/>
+                android:text="Repeat"/>
 
             <Button
                 android:layout_width="wrap_content"

@@ -26,7 +26,7 @@ public class MonsterMoveComponent implements IComponent {
     String signalName = "monster_signal";
     LinkedList<Event> localEvents = new LinkedList<>();
     float delta = 0.0f;
-    final float maxDelta = 0.5f;
+    final float maxDelta = 0.4f;
     final String REVERSE_NAME = "reverse";
 
     @Override

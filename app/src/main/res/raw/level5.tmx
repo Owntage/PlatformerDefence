@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-up" width="100" height="40" tilewidth="32" tileheight="32" nextobjectid="135">
+<map version="1.0" orientation="orthogonal" renderorder="right-up" width="100" height="40" tilewidth="32" tileheight="32" nextobjectid="136">
  <tileset firstgid="1" name="tileset" tilewidth="32" tileheight="32">
   <image source="generic_platformer_tiles.png" width="1024" height="768"/>
  </tileset>
@@ -1844,11 +1844,11 @@
    <tile gid="297"/>
    <tile gid="297"/>
    <tile gid="297"/>
-   <tile gid="297"/>
-   <tile gid="297"/>
-   <tile gid="297"/>
-   <tile gid="297"/>
-   <tile gid="297"/>
+   <tile gid="460"/>
+   <tile gid="455"/>
+   <tile gid="455"/>
+   <tile gid="455"/>
+   <tile gid="430"/>
    <tile gid="297"/>
    <tile gid="297"/>
    <tile gid="297"/>
@@ -1944,11 +1944,11 @@
    <tile gid="297"/>
    <tile gid="297"/>
    <tile gid="297"/>
-   <tile gid="297"/>
-   <tile gid="297"/>
-   <tile gid="297"/>
-   <tile gid="297"/>
-   <tile gid="297"/>
+   <tile gid="135"/>
+   <tile gid="421"/>
+   <tile gid="421"/>
+   <tile gid="421"/>
+   <tile gid="452"/>
    <tile gid="297"/>
    <tile gid="297"/>
    <tile gid="297"/>
@@ -4032,10 +4032,10 @@
   <object id="22" name="scalable" type="monster_reverse" x="801" y="581" width="26" height="56"/>
   <object id="24" name="scalable" type="monster_reverse" x="352.5" y="577.5" width="26" height="56"/>
   <object id="25" type="level5_sentry" x="463" y="598.5" width="31" height="24.5"/>
-  <object id="26" name="scalable" type="monster_reverse" x="1081" y="488" width="26" height="56"/>
-  <object id="27" name="scalable" type="monster_reverse" x="1261" y="492" width="26" height="56"/>
-  <object id="28" name="scalable" type="monster_reverse" x="1362" y="493" width="26" height="56"/>
-  <object id="29" name="scalable" type="monster_reverse" x="1554" y="491" width="26" height="56"/>
+  <object id="26" name="scalable" type="monster_reverse" x="1090" y="486" width="26" height="56"/>
+  <object id="27" name="scalable" type="monster_reverse" x="1249" y="491" width="26" height="56"/>
+  <object id="28" name="scalable" type="monster_reverse" x="1387" y="490" width="26" height="56"/>
+  <object id="29" name="scalable" type="monster_reverse" x="1532" y="486" width="26" height="56"/>
   <object id="30" name="scalable" type="monster_reverse" x="1277" y="834" width="26" height="56"/>
   <object id="31" name="scalable" type="monster_reverse" x="960" y="835" width="26" height="56"/>
   <object id="32" type="level5_sentry" x="1128.5" y="857.75" width="31" height="24.5"/>
@@ -4067,12 +4067,8 @@
   <object id="62" type="coin" x="1048.5" y="443.75" width="14" height="12.5"/>
   <object id="63" type="coin" x="1082" y="467.75" width="14" height="12.5"/>
   <object id="64" type="coin" x="1103" y="492.25" width="14" height="12.5"/>
-  <object id="65" type="coin" x="1119" y="519.25" width="14" height="12.5"/>
   <object id="75" type="coin" x="1192" y="520.25" width="14" height="12.5"/>
-  <object id="76" type="coin" x="1253" y="520.25" width="14" height="12.5"/>
-  <object id="77" type="coin" x="1387" y="521.75" width="14" height="12.5"/>
   <object id="78" type="coin" x="1451.5" y="519.75" width="14" height="12.5"/>
-  <object id="79" type="coin" x="1508.5" y="520.75" width="14" height="12.5"/>
   <object id="80" type="coin" x="1608.5" y="458.25" width="14" height="12.5"/>
   <object id="81" type="coin" x="1607" y="490.25" width="14" height="12.5"/>
   <object id="82" type="coin" x="1609.5" y="520.75" width="14" height="12.5"/>
@@ -4128,5 +4124,6 @@
   <object id="132" type="coin" x="342" y="619.75" width="14" height="12.5"/>
   <object id="133" type="coin" x="230.5" y="552.25" width="14" height="12.5"/>
   <object id="134" type="coin" x="354.5" y="492.25" width="14" height="12.5"/>
+  <object id="135" name="scalable" type="water" x="1277" y="578" width="108" height="31"/>
  </objectgroup>
 </map>

@@ -135,7 +135,7 @@ public class EndOfLevel extends Activity {
 
     @SuppressWarnings("unchecked,deprecation")
     void startCurrentUserRequest() {
-        VKRequest request = VKApi.wall().post(VKParameters.from(VKApiConst.OWNER_ID, id, VKApiConst.MESSAGE, getResources().getString(R.string.for_wall_before) + " " + col + " " + getResources().getString(R.string.for_wall_after)));
+        VKRequest request = VKApi.wall().post(VKParameters.from(VKApiConst.OWNER_ID, id, VKApiConst.MESSAGE, "пройден уровень " + level + " в игре PlatformerDefence!"));
 
         request.attempts = 10;
         request.executeWithListener(new VKRequest.VKRequestListener() {

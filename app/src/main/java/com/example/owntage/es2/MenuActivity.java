@@ -20,7 +20,7 @@ import java.util.List;
  * Created by Owntage on 11/28/2015.
  */
 public class MenuActivity extends Activity {
-    public final static int N = 10;
+    public final static int N = 7;
     private final static String TAG = MenuActivity.class.getSimpleName();
     public static int Open = 1;
 

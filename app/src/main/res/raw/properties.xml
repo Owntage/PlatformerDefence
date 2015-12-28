@@ -16,7 +16,7 @@
 			<health>100</health>
 			<raycast_damage>
 				<type>sentry</type>
-				<damage>100</damage>
+				<damage>34</damage>
 			</raycast_damage>
 			<collision_damage>
 				<type>water</type>
@@ -208,11 +208,83 @@
 			</animation>
 		</texture>
 	</actor>
+	<actor id = "fast_monster">
+		<physics>
+			<body_name>monster1</body_name>
+			<body_type>dynamic</body_type>
+			<mass>1.0</mass>
+			<restitution>0.3</restitution>
+			<scale_x>1.0</scale_x>
+			<scale_y>1.0</scale_y>
+			<max_speed>6.0</max_speed>
+			<jump_height>3.5</jump_height>
+		</physics>
+		<monster>monster_signal</monster>
+		<texture>
+			<animation>
+				<name>default</name>
+				<image>monster1</image>
+				<delay>1000</delay>
+			</animation>
+		</texture>
+	</actor>
+	<actor id = "fast_monster2">
+		<physics>
+			<body_name>monster1</body_name>
+			<body_type>dynamic</body_type>
+			<mass>1.0</mass>
+			<restitution>0.3</restitution>
+			<scale_x>1.0</scale_x>
+			<scale_y>1.0</scale_y>
+			<max_speed>8.0</max_speed>
+			<jump_height>3.5</jump_height>
+		</physics>
+		<monster>monster_signal2</monster>
+		<texture>
+			<animation>
+				<name>default</name>
+				<image>monster1</image>
+				<delay>1000</delay>
+			</animation>
+		</texture>
+	</actor>
+	<actor id = "fast_monster3">
+		<physics>
+			<body_name>monster1</body_name>
+			<body_type>dynamic</body_type>
+			<mass>1.0</mass>
+			<restitution>0.3</restitution>
+			<scale_x>1.0</scale_x>
+			<scale_y>1.0</scale_y>
+			<max_speed>10.0</max_speed>
+			<jump_height>3.5</jump_height>
+		</physics>
+		<monster>monster_signal3</monster>
+		<texture>
+			<animation>
+				<name>default</name>
+				<image>monster1</image>
+				<delay>1000</delay>
+			</animation>
+		</texture>
+	</actor>
 	<actor id = "monster_signal">
 		<physics>
 			<body_type>sensor</body_type>
 		</physics>
 		<signal>monster_signal</signal>
+	</actor>
+	<actor id = "monster_signal2">
+		<physics>
+			<body_type>sensor</body_type>
+		</physics>
+		<signal>monster_signal2</signal>
+	</actor>
+	<actor id = "monster_signal3">
+		<physics>
+			<body_type>sensor</body_type>
+		</physics>
+		<signal>monster_signal3</signal>
 	</actor>
 	<actor id = "monster_reverse">
 		<physics>

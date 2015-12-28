@@ -25,7 +25,7 @@ public class ClassicModeComponent implements IComponent {
     int score = 0;
     int mainActorID;
     int lastCheckpoint = -1;
-    int lifes = 3;
+    int lifes = 10;
     int maxLifes = 3;
     boolean finished = false;
     GameLogic gameLogic;
@@ -45,7 +45,7 @@ public class ClassicModeComponent implements IComponent {
     public void onEvent(Event event) {
         switch(event.component) {
             case "health":
-                if(lifes > 0) {
+                if(lifes > 1) {
                     lifes--;
                     toCheckpoint();
                 } else {
@@ -65,6 +65,7 @@ public class ClassicModeComponent implements IComponent {
                 break;
             case "finish":
                 finished = true;
+                score++;
                 break;
             case "checkpoint":
                 lastCheckpoint = event.actorID;
